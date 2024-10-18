@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="/login.css">
+</head>
+<body>
+    <div class="error-message" th:if="${param.error}">
+        Usuario o contraseña incorrecto.
+    </div>
+    <div class="logout-message" th:if="${param.logout}">
+        Has sido desconectado.
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div><label> Usuario : <input type="text" name="username"/> </label></div>
+        <div><label> Contraseña : <input type="password" name="password"/> </label></div>
+        <div><input type="submit" value="Sign In"/></div>
+    </form>
+</body>
+</html>

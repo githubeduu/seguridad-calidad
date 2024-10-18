@@ -1,0 +1,59 @@
+/* Estilos generales */
+body {
+    background-color: #FFFFFF; /* Fondo blanco */
+    font-family: Arial, sans-serif;
+    color: #000000; /* Texto en negro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form {
+    background-color: #87CEEB; /* Fondo celeste */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Para que ocupe el ancho completo */
+    max-width: 350px; /* Ancho máximo del formulario */
+    text-align: center;
+}
+
+label {
+    color: #000000; /* Etiquetas en negro */
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%; /* Hacer los inputs del mismo ancho del formulario */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #000000; /* Borde negro */
+    border-radius: 5px;
+    box-sizing: border-box; /* Garantiza que el padding no exceda el ancho del contenedor */
+}
+
+input[type="submit"] {
+    background-color: #000000; /* Botón negro */
+    color: #FFFFFF; /* Texto del botón en blanco */
+    border: none;
+    padding: 10px;
+    width: 100%; /* Botón del mismo ancho */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #333333; /* Color al hacer hover */
+}
+
+.error-message, .logout-message {
+    color: #FF0000; /* Mensaje de error en rojo */
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
