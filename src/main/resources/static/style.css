@@ -1,11 +1,5 @@
 /* Estilos generales */
-body {
-    background-color: #FFFFFF; /* Fondo blanco */
-    font-family: Arial, sans-serif;
-    color: #000000; /* Texto en negro */
-    margin: 0;
-    padding: 0;
-}
+
 
 header {
     background-color: #87CEEB; /* Fondo celeste */
@@ -27,17 +21,24 @@ nav a {
     display: block; /* Muestra como bloque para centrar */
 }
 
+.container_form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 12px;
+  }
+  
+
 .recetas {
     padding: 20px;
 }
 
-table {
+/* table {
     width: 100%;
     border-collapse: collapse;
 }
 
 table, th, td {
-    border: 1px solid #ddd; /* Borde gris claro */
+    border: 1px solid #ddd;
 }
 
 th, td {
@@ -46,9 +47,9 @@ th, td {
 }
 
 th {
-    background-color: #FFD700; /* Fondo amarillo para los encabezados */
-    color: #000000; /* Texto en negro */
-}
+    background-color: #FFD700;
+    color: #000000; 
+} */
 
 .buscador {
     margin-top: 20px;
