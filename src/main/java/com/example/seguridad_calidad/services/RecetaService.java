@@ -20,6 +20,8 @@ public class RecetaService {
         // Agrega más recetas si es necesario
     }
 
+    
+
     public List<Receta> obtenerRecetasPublicas() {
        
         List<Receta> recetasPublicas = new ArrayList<>();
@@ -41,4 +43,6 @@ public class RecetaService {
                                   (dificultad == null || receta.getDificultad().toLowerCase().contains(dificultad.toLowerCase())))
                 .toList();
     }
+
+    
 }

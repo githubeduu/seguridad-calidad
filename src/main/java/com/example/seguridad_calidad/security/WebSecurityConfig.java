@@ -21,12 +21,14 @@ public class WebSecurityConfig {
                 .requestMatchers("/home").permitAll()
                 //.requestMatchers("/receta/**").authenticated()
                 .requestMatchers("/**.css").permitAll()
+                .requestMatchers("/recetas").permitAll()
+                .requestMatchers("/recetas/**").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin((form) -> form
                 .loginPage("/login")
                 .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/home", true)
+                .defaultSuccessUrl("/home", true)                
                 .permitAll()
             )
             .logout((logout) -> logout

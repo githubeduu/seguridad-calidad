@@ -159,8 +159,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr th:each="receta : ${recetas}" >
-            <td th:text="${receta.nombre}" ></td>
+          <tr th:each="receta : ${recetas}">
+            <td>
+              <a
+                th:href="@{/recetas/{nombre}(nombre=${receta.nombre})}"
+                th:text="${receta.nombre}"
+              ></a>
+            </td>
             <td th:text="${receta.tipoCocina}"></td>
             <td th:text="${receta.ingredientes}"></td>
             <td th:text="${receta.paisOrigen}"></td>

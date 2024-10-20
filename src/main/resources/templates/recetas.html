@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Recetas</title>
+    <meta charset="UTF-8" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/style.css" />
+
+  </head>
+  <body>
+    <!-- Itera a través de la lista de recetas usando Thymeleaf -->
+    <main th:each="receta : ${recetas}"  class="cards">
+      <h1>Lista de Recetas</h1>
+      <div class="card" style="width: 18rem">
+        <img src="..." class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title" th:text="${receta.nombre}"></h5>
+          <p class="card-text" th:text="${receta.ingredientes}"></p>
+          <p class="card-text" th:text="${receta.instrucciones}"></p>
+          <p class="card-text" th:text="${receta.tiempoCoccion}"></p>
+          <p class="card-text" th:text="${receta.dificultad}"></p>
+          <a href="/home">Volver a la Página de Inicio</a>
+        </div>
+      </div>
+
+      <!-- <h1 th:text="${receta.nombre}">Nombre de la Receta</h1>
+      <p th:text="${receta.imagen}" alt="Imagen de la receta"></p>
+      <h2>Ingredientes</h2>
+      <p th:text="${receta.ingredientes}"></p>
+      <h2>Instrucciones</h2>
+      <p th:text="${receta.instrucciones}"></p>
+      <h2>Tiempo de Cocción</h2>
+      <p th:text="${receta.tiempoCoccion} + ' minutos'"></p>
+      <h2>Dificultad</h2>
+      <p th:text="${receta.dificultad}"></p> -->
+    </main>
+  </body>
+</html>

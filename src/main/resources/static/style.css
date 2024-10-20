@@ -1,71 +1,57 @@
 /* Estilos generales */
 
-
 header {
-    background-color: #87CEEB; /* Fondo celeste */
-    color: #000000; /* Texto en negro */
-    padding: 1em;
-    text-align: center;
+  background-color: #87ceeb; /* Fondo celeste */
+  color: #000000; /* Texto en negro */
+  padding: 1em;
+  text-align: center;
 }
 
 nav a {
-    color: #000000; /* Enlace en negro */
-    text-decoration: none;
-    margin: 0 15px;
+  color: #000000; /* Enlace en negro */
+  text-decoration: none;
+  margin: 0 15px;
 }
 
 .banners img {
-    width: 80%; /* Se ajusta al 80% del ancho de la pantalla */
-    height: auto; /* Mantiene la proporción de las imágenes */
-    margin: 0 auto; /* Centra las imágenes */
-    display: block; /* Muestra como bloque para centrar */
+  width: 80%; /* Se ajusta al 80% del ancho de la pantalla */
+  height: auto; /* Mantiene la proporción de las imágenes */
+  margin: 0 auto; /* Centra las imágenes */
+  display: block; /* Muestra como bloque para centrar */
 }
 
 .container_form {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-    gap: 12px;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 12px;
+}
 
 .recetas {
-    padding: 20px;
+  padding: 20px;
 }
 
-/* table {
-    width: 100%;
-    border-collapse: collapse;
+.cards {
+  height: 100vh;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #FFD700;
-    color: #000000; 
-} */
-
 .buscador {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .buscador input {
-    margin-right: 10px;
-    padding: 10px;
-    width: calc(100% - 22px); /* Ancho total menos márgenes */
-    border: 2px solid #000000; /* Borde negro */
-    border-radius: 5px;
-    box-sizing: border-box; /* Garantiza que el padding no exceda el ancho del contenedor */
+  margin-right: 10px;
+  padding: 10px;
+  width: calc(100% - 22px); /* Ancho total menos márgenes */
+  border: 2px solid #000000; /* Borde negro */
+  border-radius: 5px;
+  box-sizing: border-box; /* Garantiza que el padding no exceda el ancho del contenedor */
 }
 .banners img {
-    width: 80%; /* Ajusta el tamaño de las imágenes de los banners */
-    height: auto; /* Mantiene la proporción de las imágenes */
-    margin: 0 auto; /* Centra las imágenes */
-    display: block; /* Muestra como bloque para centrar */
+  width: 80%; /* Ajusta el tamaño de las imágenes de los banners */
+  height: auto; /* Mantiene la proporción de las imágenes */
+  margin: 0 auto; /* Centra las imágenes */
+  display: block; /* Muestra como bloque para centrar */
 }
