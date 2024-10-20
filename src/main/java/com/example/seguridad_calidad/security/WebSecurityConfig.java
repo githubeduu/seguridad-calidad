@@ -21,8 +21,8 @@ public class WebSecurityConfig {
                 .requestMatchers("/home").permitAll()
                 //.requestMatchers("/receta/**").authenticated()
                 .requestMatchers("/**.css").permitAll()
-                .requestMatchers("/recetas").permitAll()
-                .requestMatchers("/recetas/**").permitAll()
+                .requestMatchers("/recetas").authenticated()
+                .requestMatchers("/recetas/**").authenticated()
                 .anyRequest().authenticated()
             )
             .formLogin((form) -> form
