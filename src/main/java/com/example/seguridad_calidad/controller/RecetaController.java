@@ -46,8 +46,8 @@ public class RecetaController {
         RecetaDetail recetaEncontrada = recetaDetailService.getRecetasDetail(nombre);
     
         if (recetaEncontrada != null) {
-            model.addAttribute("recetas", recetaEncontrada);  // Agregar receta al modelo
-            return "recetas";  // Nombre de la vista donde se mostrará el detalle
+            model.addAttribute("recetas", recetaEncontrada);
+            return "recetas";
         }
     
         return "error";  // Si no se encuentra, redirige a una página de error

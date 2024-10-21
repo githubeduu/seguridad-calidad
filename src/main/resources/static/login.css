@@ -1,33 +1,50 @@
+body {
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
 main {
   height: 100vh;
   display: flex;
   align-items: center;
-  background-color: #f4f3f3;
   justify-content: center;
 }
 
 form {
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,.25);
-  width: 100%; /* Para que ocupe el ancho completo */
-  max-width: 350px; /* Ancho máximo del formulario */
-  text-align: center;
-  margin: 0 auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
   background-color: white;
+  width: 100%;
+  max-width: 400px;
 }
 
-label {
-  color: #000000; /* Etiquetas en negro */
-  font-weight: bold;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.error-message,
-.logout-message {
-  color: #ff0000; /* Mensaje de error en rojo */
-  font-weight: bold;
-  margin-bottom: 10px;
+h2 {
+  margin-bottom: 20px;
   text-align: center;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.error-message {
+  color: #dc3545; /* Mensaje de error en rojo */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.logout-message {
+  color: #28a745; /* Mensaje de éxito en verde */
+  margin-top: 10px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary.btn-block {
+  width: 100%;
 }

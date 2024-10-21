@@ -1,58 +1,35 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Login</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
+<head>
+    <title>Inicio de Sesión</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/login.css" />
-  </head>
-  <body>
+</head>
+<body>
     <main>
-      <form th:action="@{/login}" method="post">
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Nombre de Usuario"
-            name="username"
-            aria-label="Username"
-            id="username"
-            aria-describedby="basic-addon1"
-            th:classappend="${param.error} ? 'is-invalid' : ''"
-          />
-          <span class="invalid-feedback" th:if="${param.error}">
-            Por favor escribe un usuario correcto.
-          </span>
-        </div>
-        <div class="input-group mb-3">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="Contraseña"
-            name="password"
-            aria-label="Password"
-            id="password"
-            aria-describedby="basic-addon1"
-            th:classappend="${param.error} ? 'is-invalid' : ''"
-          />
-          <span class="invalid-feedback" th:if="${param.error}">
-            Por favor escribe una contraseña correcta.
-          </span>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-      </form>
-
-      <p class="text-success mt-2" th:if="${param.logout}">
-        Has cerrado sesión con éxito.
-      </p>
+        <form th:action="@{/login}" method="post">
+            <h2>Inicio de Sesión</h2>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username" id="username"
+                       aria-label="Username" th:classappend="${param.error} ? 'is-invalid' : ''" />
+                <span class="invalid-feedback" th:if="${param.error}">
+                    Por favor escribe un usuario correcto.
+                </span>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Contraseña" name="password" id="password"
+                       aria-label="Password" th:classappend="${param.error} ? 'is-invalid' : ''" />
+                <span class="invalid-feedback" th:if="${param.error}">
+                    Por favor escribe una contraseña correcta.
+                </span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+            <p class="logout-message" th:if="${param.logout}">Has cerrado sesión con éxito.</p>
+        </form>
     </main>
-  </body>
+</body>
 </html>

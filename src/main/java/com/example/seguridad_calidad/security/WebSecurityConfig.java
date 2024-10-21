@@ -19,8 +19,8 @@ public class WebSecurityConfig {
         http
             .authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/home").permitAll()
-                //.requestMatchers("/receta/**").authenticated()
                 .requestMatchers("/**.css").permitAll()
+                .requestMatchers("/img/**").permitAll()
                 .requestMatchers("/recetas").authenticated()
                 .requestMatchers("/recetas/**").authenticated()
                 .anyRequest().authenticated()
@@ -32,7 +32,7 @@ public class WebSecurityConfig {
                 .permitAll()
             )
             .logout((logout) -> logout
-            .logoutUrl("/logout") // Asegúrate de incluir esta línea
+            .logoutUrl("/logout")
             .logoutSuccessUrl("/home")
             .permitAll()
            );

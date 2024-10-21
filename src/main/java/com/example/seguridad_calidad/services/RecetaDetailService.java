@@ -14,12 +14,12 @@ public class RecetaDetailService {
     public RecetaDetailService() {
 
         recetaDetail.add(
-                new RecetaDetail("Receta 1", "imagen1.jpg", "Ingredientes 1", "Instrucciones 1",
+                new RecetaDetail("Pizza Margherita", "/img/pizza.png", "asa, tomate, mozzarella, albahaca", "Instrucciones 1",
                  "30 min", "Fácil"));
         recetaDetail.add(
-                new RecetaDetail("Receta 2", "imagen2.jpg", "Ingredientes 2", "Instrucciones 2", "45 min", "Media"));
+                new RecetaDetail("Tacos al Pastor", "/img/taco.jpg", "Carne de cerdo, piña, cebolla, cilantro, tortillas", "Instrucciones 2", "45 min", "Media"));
         recetaDetail.add(
-                new RecetaDetail("Receta 3", "imagen3.jpg", "Ingredientes 3", "Instrucciones 3", "60 min", "Difícil"));
+                new RecetaDetail("Sushi de Salmón", "/img/sushi.png", "Arroz, salmón fresco, alga nori, wasabi, salsa de soja", "Instrucciones 3", "60 min", "Difícil"));
 
     }
 
@@ -27,10 +27,10 @@ public class RecetaDetailService {
         System.out.println("Buscando receta con nombre: " + nombre);
         for (RecetaDetail receta : recetaDetail) {
             if (receta.getNombre().equals(nombre)) {
-                return receta;  // Retorna la receta encontrada
+                return receta;
             }
         }
-        return null;  // Retorna null si no se encuentra
+        return null;
     }
 
 }
