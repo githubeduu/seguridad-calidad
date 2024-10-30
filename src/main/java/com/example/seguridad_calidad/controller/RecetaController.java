@@ -50,7 +50,7 @@ public class RecetaController {
             return "recetas";
         }
     
-        return "error";  // Si no se encuentra, redirige a una página de error
+        return "error";
     }
 
 }

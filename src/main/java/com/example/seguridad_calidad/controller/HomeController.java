@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.seguridad_calidad.Model.Receta;
 import com.example.seguridad_calidad.services.RecetaService;
 
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 public class HomeController {
@@ -21,10 +23,12 @@ public class HomeController {
 
     
     @GetMapping("/home")
-    public String home(Model model) {
+    public String home(HttpSession session, Model model) {
         model.addAttribute("name", "Seguridad y Calidad en el Desarrollo");
         List<Receta> recetas = recetaService.obtenerRecetasPublicas();
         model.addAttribute("recetas", recetas);
+        String username = (String) session.getAttribute("username");
+        model.addAttribute("username", username);
         return "Home";
     }
 }

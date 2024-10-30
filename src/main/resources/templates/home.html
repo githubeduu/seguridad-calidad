@@ -18,15 +18,16 @@
             <ul class="nav-links">
                 <li>
                     <a href="/login">
-                        <i class="fas fa-user"></i> Login
+                        <i class="fas fa-user"></i> Inicio de Sesión
                     </a>
                 </li>
-            </ul>
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i> Cierre de Sesión
+                </a>
+            </ul>           
         </nav>
-        <div class="authenticated-section" sec:authorize="isAuthenticated()">
-            <h1 th:inline="text">
-                Hola <span th:remove="tag" sec:authentication="name"></span>!
-            </h1>
+        <div class="authenticated-section" th:if="${username != null}">
+            <h1>Hola, <span th:text="${username}"></span>!</h1>
         </div>
     </header>
 

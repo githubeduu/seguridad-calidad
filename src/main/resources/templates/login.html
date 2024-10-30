@@ -4,32 +4,51 @@
     <title>Inicio de Sesión</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" type="text/css" href="/login.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/login.css" />
 </head>
 <body>
-    <main>
-        <form th:action="@{/login}" method="post">
-            <h2>Inicio de Sesión</h2>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username" id="username"
-                       aria-label="Username" th:classappend="${param.error} ? 'is-invalid' : ''" />
-                <span class="invalid-feedback" th:if="${param.error}">
-                    Por favor escribe un usuario correcto.
-                </span>
+    <!-- Header -->
+    <header>
+        <h1>Bienvenido a Recetas Deliciosas</h1>       
+    </header>
+
+    <!-- Main Content -->
+    <main class="d-flex align-items-center justify-content-center min-vh-100">
+        <div class="card p-4" style="max-width: 400px; width: 100%;">
+            <form th:action="@{/login}" method="post">
+                <h2 class="text-center">Inicio de Sesión</h2>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username" id="username"
+                           aria-label="Username" th:classappend="${param.error} ? 'is-invalid' : ''" />
+                    <span class="invalid-feedback" th:if="${param.error}">
+                        Por favor escribe un usuario correcto.
+                    </span>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Contraseña" name="password" id="password"
+                           aria-label="Password" th:classappend="${param.error} ? 'is-invalid' : ''" />
+                    <span class="invalid-feedback" th:if="${param.error}">
+                        Por favor escribe una contraseña correcta.
+                    </span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+                <p class="logout-message text-center" th:if="${param.logout}">Has cerrado sesión con éxito.</p>
+            </form>
+            
+            <!-- Enlace centrado debajo del formulario -->
+            <div class="text-center mt-3">
+                <a href="/home" class="text-primary">Volver a la Página de Inicio</a>
             </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Contraseña" name="password" id="password"
-                       aria-label="Password" th:classappend="${param.error} ? 'is-invalid' : ''" />
-                <span class="invalid-feedback" th:if="${param.error}">
-                    Por favor escribe una contraseña correcta.
-                </span>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
-            <p class="logout-message" th:if="${param.logout}">Has cerrado sesión con éxito.</p>
-        </form>
+        </div>
     </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Recetas Deliciosas. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>

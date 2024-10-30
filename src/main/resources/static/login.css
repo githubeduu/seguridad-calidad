@@ -4,10 +4,11 @@ body {
 }
 
 main {
-  height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 50px;
 }
 
 form {
@@ -17,6 +18,13 @@ form {
   background-color: white;
   width: 100%;
   max-width: 400px;
+}
+
+header, footer {
+  background-color: #4B8A3D; 
+  color: #ffffff;
+  padding: 1em;
+  text-align: center;
 }
 
 h2 {

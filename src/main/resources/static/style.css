@@ -1,29 +1,31 @@
 main {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra los elementos hijos */
-  justify-content: center; /* Centra verticalmente */
-  min-height: 100vh; /* Asegura que ocupe toda la altura */
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
 }
 
+
 .card {
-  width: 100%; /* Asegura que las tarjetas ocupen todo el ancho disponible */
-  max-width: 400px; /* Limita el ancho máximo como el formulario */
-  margin: 20px auto; /* Centra las tarjetas en la página */
-  padding: 20px; /* Agrega un poco de padding */
-  background-color: #ffffff; /* Fondo blanco */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25); /* Sombra similar al login */
-  transition: transform 0.2s; /* Transición suave al pasar el ratón */
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s;
 }
 
 .card:hover {
-  transform: scale(1.05); /* Efecto de hover */
+  transform: scale(1.05);
 }
 
-header {
-  background-color: #4B8A3D; /* Verde oliva */
-  color: #ffffff; /* Texto en blanco */
+header, footer {
+  background-color: #4B8A3D;
+  color: #ffffff;
   padding: 1em;
   text-align: center;
 }
@@ -37,16 +39,16 @@ header {
 }
 
 .nav-links a {
-  color: #ffffff; /* Enlace en blanco */
+  color: #ffffff;
   text-decoration: none;
   margin: 0 15px;
 }
 
 .banners img {
-  width: 35%; /* Ajusta el tamaño de las imágenes de los banners al 60% */
-  height: auto; /* Mantiene la proporción de las imágenes */
-  margin: 0 auto; /* Centra las imágenes */
-  display: block; /* Muestra como bloque para centrar */
+  width: 35%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
 }
 
 .container_form {
@@ -59,4 +61,3 @@ header {
   padding: 20px;
 }
 
-/* Otros estilos ya existentes... */
