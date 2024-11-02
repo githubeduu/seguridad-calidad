@@ -1,41 +1,59 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lista de Recetas</title>
     <link rel="stylesheet" href="/recetas.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <header>
-        <h1>Lista de Recetas</h1>
+  </head>
+  <body>
+    <header class="mb-5">
+      <h1>Lista de Recetas</h1>
     </header>
 
-    <main class="container my-4">
-        <div class="row justify-content-center">
-            <div class="col-md-4" th:each="receta : ${recetas}">
-                <div class="card mb-4">
-                    <img th:src="@{${receta.imagen}}" class="card-img-top" alt="Imagen de receta" />
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${receta.nombre}"></h5>
-                        <p class="card-text" th:text="${receta.ingredientes}"></p>                    
-                        <p class="card-text" th:text="${receta.instrucciones}"></p>
-                        <p class="card-text" th:text="${receta.tiempoCoccion}"></p>
-                        <p class="card-text" th:text="${receta.dificultad}"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a href="/home" class="text-primary" style="display: block; text-align: center; margin-top: 20px;">Volver a la Página de Inicio</a>
+    <main class="container my-4" th:each="receta : ${recetas}">
+      <article class="container">
+        <section class="row">
+          <div class="col-12">
+            <img th:src="@{${receta.imagen}}" alt="Imagen de receta" />
+          </div>
+          <div class="col-12 text-center my-5">
+            <h2 th:text="${receta.nombre}"></h2>
+          </div>
+        </section>
+      </article>
+
+      <article class="row">
+        <section class="col-6 border_info">
+          <h3>Ingredientes</h3>
+          <p class="card-text" th:text="${receta.ingredientes}"></p>
+        </section>
+        <section class="col-6 border_info">
+          <h3>Preparacion</h3>
+          <p class="card-text" th:text="${receta.instrucciones}"></p>
+          <p class="card-text" th:text="${receta.tiempoCoccion}"></p>
+          <p class="card-text" th:text="${receta.dificultad}"></p>
+        </section>
+      </article>
+
+      <section class="col-12 d-flex justify-content-start">
+        <a href="/home" class="btn btn-primary">Volver</a>
+      </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Recetas Deliciosas. Todos los derechos reservados.</p>
+      <p>&copy; 2024 Recetas Deliciosas. Todos los derechos reservados.</p>
     </footer>
-</body>
+  </body>
 </html>

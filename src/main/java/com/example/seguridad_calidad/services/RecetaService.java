@@ -13,9 +13,9 @@ public class RecetaService {
     private final List<Receta> recetas = new ArrayList<>();
 
     public RecetaService() {
-        recetas.add(new Receta("Pizza Margherita", "Italiana", "Masa, tomate, mozzarella, albahaca", "Italia", "Fácil"));
-        recetas.add(new Receta("Tacos al Pastor", "Mexicana", "Carne de cerdo, piña, cebolla, cilantro, tortillas", "México", "Media"));
-        recetas.add(new Receta("Sushi de Salmón", "Japonesa", "Arroz, salmón fresco, alga nori, wasabi, salsa de soja", "Japón", "Difícil"));
+        recetas.add(new Receta("Pizza Margherita", "Italiana", "Masa, tomate, mozzarella, albahaca", "Italia", "Facil", "/img/pizza-margarita.jpg"));
+        recetas.add(new Receta("Tacos al Pastor", "Mexicana", "Carne de cerdo, piña, cebolla, cilantro, tortillas", "México", "Media","/img/taco2.jpg"));
+        recetas.add(new Receta("Sushi de Salmón", "Japonesa", "Arroz, salmón fresco, alga nori, wasabi, salsa de soja", "Japón", "Dificil","/img/sushiMain.webp"));
     }
 
     public List<Receta> obtenerRecetasPublicas() {

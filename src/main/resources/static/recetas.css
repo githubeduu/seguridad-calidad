@@ -1,72 +1,49 @@
 /* Estilos generales para la página de recetas */
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f8f9fa; /* Color de fondo claro */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Asegura que el cuerpo ocupe al menos toda la altura de la ventana */
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f8f9fa; /* Color de fondo claro */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que el cuerpo ocupe al menos toda la altura de la ventana */
 }
 
 h1 {
-    text-align: center;
-    margin-top: 20px;
-    color: #4B8A3D; /* Verde oliva */
+  text-align: center;
+  margin-top: 20px;
+  color: #4b8a3d; /* Verde oliva */
 }
-
-main {
-    flex-grow: 1; /* Permite que esta sección ocupe el espacio disponible */
-    display: flex; /* Para centrar contenido */
-    flex-direction: column; /* Apila elementos verticalmente */
-    align-items: center; /* Centra los elementos hijos */
+.col-12 {
+  display: flex;
+  justify-content: center;
 }
-
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Centra las tarjetas */
-    padding: 20px;
-    width: 100%; /* Asegura que ocupe el ancho completo */
+.col-12 img {
+  height: 380px;
+  border-radius: 12px;
 }
-
-.card {
-    width: 18rem; /* Ancho fijo para las tarjetas */
-    margin: 15px; /* Espaciado entre tarjetas */
-    background-color: #ffffff; /* Fondo blanco */
-    border: 1px solid #dee2e6; /* Borde gris */
-    border-radius: 0.25rem; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: transform 0.2s; /* Transición suave al pasar el ratón */
+main h2 {
+  text-align: center;
+  font-weight: 600;
 }
-
-.card:hover {
-    transform: scale(1.05); /* Efecto de hover */
+main h3 {
+  font-weight: 100;
 }
-
-.card-img-top {
-    border-top-left-radius: 0.25rem; /* Bordes redondeados en la parte superior */
-    border-top-right-radius: 0.25rem;
-}
-
-.card-body {
-    display: flex;
-    flex-direction: column; /* Asegura que el contenido se apile verticalmente */
-    justify-content: space-between; /* Espacia el contenido de la tarjeta */
-    height: 100%; /* Permite que el contenido use toda la altura de la tarjeta */
-}
-
-.card-title {
-    font-size: 1.25rem; /* Tamaño del título */
-    margin-bottom: 0.5rem; /* Margen inferior */
-}
-
-.card-text {
-    margin-bottom: 1rem; /* Margen inferior para el texto */
-}
-
+/* .border_info{
+    border: solid 1px ;
+} */
 footer {
-    background-color: #4B8A3D; /* Verde oliva */
-    color: #ffffff; /* Texto en blanco */
-    text-align: center;
-    padding: 1em 0;
+  background-color: #4b8a3d; /* Verde oliva */
+  color: #ffffff; /* Texto en blanco */
+  display: flex!important;
+  justify-content: center!important;
+  align-items: center!important;
+  height: 10vh;
+}
+button a {
+  color: white;
+  text-decoration: none;
+}
+button a:hover {
+  color: white;
+  text-decoration: none;
 }

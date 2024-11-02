@@ -6,19 +6,24 @@ public class Receta {
     private String ingredientes;
     private String paisOrigen;
     private String dificultad;
+    private String imagen;
 
     // Constructor
-    public Receta(String nombre, String tipoCocina, String ingredientes, String paisOrigen, String dificultad) {
+    public Receta(String nombre, String tipoCocina, String ingredientes, String paisOrigen, String dificultad, String imagen) {
         this.nombre = nombre;
         this.tipoCocina = tipoCocina;
         this.ingredientes = ingredientes;
         this.paisOrigen = paisOrigen;
         this.dificultad = dificultad;
+        this.imagen = imagen;
     }
 
     // Getters y Setters
     public String getNombre() {
         return nombre;
+    }
+    public String getImagen(){
+        return imagen;
     }
 
     public String getTipoCocina() {
