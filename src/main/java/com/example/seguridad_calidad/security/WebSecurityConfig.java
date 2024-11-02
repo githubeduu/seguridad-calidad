@@ -24,8 +24,8 @@ public class WebSecurityConfig {
                 .requestMatchers("/logout").permitAll()
                 .requestMatchers("/**.css").permitAll()
                 .requestMatchers("/img/**").permitAll()
-                .requestMatchers("/recetas").permitAll() // Proteger acceso a /recetas y subrutas
-                .requestMatchers("/recetas/**").permitAll()
+                .requestMatchers("/recetas").authenticated() // Proteger acceso a /recetas y subrutas
+                .requestMatchers("/recetas/**").authenticated()
                 .anyRequest().permitAll()
                    
             )  
