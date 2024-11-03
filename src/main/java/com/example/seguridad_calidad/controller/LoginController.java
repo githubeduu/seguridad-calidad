@@ -1,5 +1,6 @@
 package com.example.seguridad_calidad.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,7 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         String loginUrl = "http://localhost:8085/auth/login";
-        
+
         // Crear el cuerpo de la solicitud
         Map<String, String> credentials = new HashMap<>();
         credentials.put("username", username);
@@ -45,7 +46,12 @@ public class LoginController {
             
             return "redirect:/home"; 
         } catch (HttpClientErrorException e) {
-            model.addAttribute("error", "Credenciales incorrectas");
+            String errorMessage = "Credenciales incorrectas";
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                Map<String, Object> errorBody = e.getResponseBodyAs(Map.class);
+                errorMessage = (String) errorBody.getOrDefault("message", errorMessage);
+            }
+            model.addAttribute("error", errorMessage);
             return "login";
         }
     }

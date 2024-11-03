@@ -32,7 +32,7 @@ public class WebSecurityConfig {
             .addFilterBefore(new JwtAuthenticationFilter(), AnonymousAuthenticationFilter.class)       
             .logout(logout -> logout
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/home")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll()

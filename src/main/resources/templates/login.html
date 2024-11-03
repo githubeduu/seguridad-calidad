@@ -26,6 +26,12 @@
       <article class="container_form">
         <form th:action="@{/login}" method="post">
           <h2 class="text-center">Inicio de Sesión</h2>
+
+          <!-- Mensaje de error -->
+          <div th:if="${error != null}" class="alert alert-danger">
+            <span th:text="${error}"></span>
+          </div>
+
           <div class="form-group">
             <input
               type="text"
@@ -34,9 +40,9 @@
               name="username"
               id="username"
               aria-label="Username"
-              th:classappend="${param.error} ? 'is-invalid' : ''"
+              th:classappend="${error} ? 'is-invalid' : ''"
             />
-            <span class="invalid-feedback" th:if="${param.error}">
+            <span class="invalid-feedback" th:if="${error}">
               Por favor escribe un usuario correcto.
             </span>
           </div>
@@ -48,9 +54,9 @@
               name="password"
               id="password"
               aria-label="Password"
-              th:classappend="${param.error} ? 'is-invalid' : ''"
+              th:classappend="${error} ? 'is-invalid' : ''"
             />
-            <span class="invalid-feedback" th:if="${param.error}">
+            <span class="invalid-feedback" th:if="${error}">
               Por favor escribe una contraseña correcta.
             </span>
           </div>
