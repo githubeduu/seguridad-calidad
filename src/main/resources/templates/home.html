@@ -28,9 +28,7 @@
       <article class="contenedor">
         <div class="contendor_titulo">
           <h1 class="logo__nombre">
-            <span class="logo_bold"> Bienvenido </span>
-            <br />
-            a Recetas Deliciosas
+            <span class="logo_bold">Bienvenido</span><br /> a Recetas Deliciosas
           </h1>
           <div class="authenticated-section" th:if="${username != null}">
             <h1>Hola, <span th:text="${username}"></span>!</h1>
@@ -38,18 +36,20 @@
         </div>
         <nav>
           <ul class="nav-links">
-            <li>
+            <li th:if="${username == null}">
               <a href="/login">
                 <i class="fas fa-user"></i> Inicio de Sesión
               </a>
             </li>
-            <a href="/logout">
-              <i class="fas fa-sign-out-alt"></i> Cierre de Sesión
-            </a>
+            <li th:if="${username != null}">
+              <a href="/logout">
+                <i class="fas fa-sign-out-alt"></i> Cierre de Sesión
+              </a>
+            </li>
           </ul>
         </nav>
       </article>
-    </header>
+    </header>   
 
     <main class="container-fluid mt-5">
       <h1>Recetas Recientes y Populares</h1>

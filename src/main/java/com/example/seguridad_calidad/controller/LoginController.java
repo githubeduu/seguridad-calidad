@@ -25,7 +25,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
-        String loginUrl = "http://localhost:8085/login";
+        String loginUrl = "http://localhost:8085/auth/login";
         
         // Crear el cuerpo de la solicitud
         Map<String, String> credentials = new HashMap<>();
