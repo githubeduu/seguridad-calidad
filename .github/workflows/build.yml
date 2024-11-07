@@ -35,4 +35,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=githubeduu_seguridad-calidad_a6323093-f2e6-4ae1-8206-17f9fb5fbee4 -Dsonar.projectName='seguridad-calidad'
+        run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.projectKey=githubeduu_seguridad-calidad_a6323093-f2e6-4ae1-8206-17f9fb5fbee4 \
+            -Dsonar.projectName='seguridad-calidad' \
+            -Dspring.main.web-application-type=none
