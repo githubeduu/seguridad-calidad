@@ -9,12 +9,12 @@ jobs:
   build:
     name: Build and analyze
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Desactivar el clonado superficial para una mejor relevancia de análisis
-          
+          fetch-depth: 0
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -43,7 +43,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
-          ./mvnw clean install
-          ./mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-            -Dsonar.projectKey=githubeduu_seguridad-calidad_a6323093-f2e6-4ae1-8206-17f9fb5fbee4 \
+          ./mvnw clean verify sonar:sonar \
+            -Dsonar.projectKey=githubeduu_seguridad-calidad \
             -Dsonar.projectName='seguridad-calidad'
