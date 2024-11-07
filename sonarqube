@@ -1,0 +1,5 @@
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=githubeduu_seguridad-calidad_a6323093-f2e6-4ae1-8206-17f9fb5fbee4 \
+  -Dsonar.projectName='seguridad-calidad' \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.token=sqp_5f66c198503f512f6882cbd1c2a25882662b545f
