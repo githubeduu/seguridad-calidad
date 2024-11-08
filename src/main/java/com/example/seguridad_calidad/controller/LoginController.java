@@ -19,11 +19,11 @@ import java.util.Map;
 @Controller
 public class LoginController {
 
-    private static final String login = "login";
+    private static final String LOGIN = "login";
 
     @GetMapping("/login")
     public String showLoginPage() {
-        return login;
+        return LOGIN;
     }
 
     @PostMapping("/login")
@@ -51,7 +51,7 @@ public class LoginController {
                 return "redirect:/home"; 
             } else {
                 model.addAttribute("error", "Respuesta vacía del servidor");
-                return login;
+                return LOGIN;
             }
         } catch (HttpClientErrorException e) {
             String errorMessage = "Credenciales incorrectas";
@@ -60,7 +60,7 @@ public class LoginController {
                 errorMessage = (String) errorBody.getOrDefault("message", errorMessage);
             }
             model.addAttribute("error", errorMessage);
-            return login;
+            return LOGIN;
         }
     }
     
