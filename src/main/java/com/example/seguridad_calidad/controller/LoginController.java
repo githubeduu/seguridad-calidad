@@ -27,24 +27,30 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
         String loginUrl = "http://localhost:8085/auth/login";
-
+    
         // Crear el cuerpo de la solicitud
         Map<String, String> credentials = new HashMap<>();
         credentials.put("username", username);
         credentials.put("password", password);
-
+    
         // Realizar la solicitud POST al backend
         RestTemplate restTemplate = new RestTemplate();
         try {
-            ResponseEntity<Map> response = restTemplate.postForEntity(loginUrl, credentials, Map.class);
-            Map<String, Object> userMap = (Map<String, Object>) response.getBody().get("user");
-            String token = (String) response.getBody().get("token");
-
-            // Almacenar el token en sesión
-            session.setAttribute("token", token);
-            session.setAttribute("username", userMap.get("nombre"));
-            
-            return "redirect:/home"; 
+            ResponseEntity<Map<String, Object>> response = restTemplate.postForEntity(loginUrl, credentials, (Class<Map<String, Object>>) (Class<?>) Map.class);
+            Map<String, Object> responseBody = response.getBody();
+            if (responseBody != null) {
+                Map<String, Object> userMap = (Map<String, Object>) responseBody.get("user");
+                String token = (String) responseBody.get("token");
+    
+                // Almacenar el token en sesión
+                session.setAttribute("token", token);
+                session.setAttribute("username", userMap.get("nombre"));
+                
+                return "redirect:/home"; 
+            } else {
+                model.addAttribute("error", "Respuesta vacía del servidor");
+                return "login";
+            }
         } catch (HttpClientErrorException e) {
             String errorMessage = "Credenciales incorrectas";
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
@@ -55,9 +61,10 @@ public class LoginController {
             return "login";
         }
     }
+    
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletRequest request) {
+    public ResponseEntity<String> logout(HttpServletRequest request) {
         return ResponseEntity.ok("Logout successful");
     }
 }

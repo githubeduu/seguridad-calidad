@@ -24,7 +24,7 @@ import com.example.seguridad_calidad.constants.*;;;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final String secretKey = constants.SUPER_SECRET_KEY; 
+    private final String secretKey = Constantes.SUPER_SECRET_KEY; 
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
