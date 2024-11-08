@@ -22,6 +22,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/home").permitAll()
                 .requestMatchers("/login").permitAll() // Permitir acceso a /login sin autenticación
                 .requestMatchers("/logout").permitAll()
+                .requestMatchers("/registro").permitAll()
                 .requestMatchers("/**.css").permitAll()
                 .requestMatchers("/img/**").permitAll()
                 .requestMatchers("/recetas").authenticated() // Proteger acceso a /recetas y subrutas
