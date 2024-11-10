@@ -23,7 +23,7 @@ main {
   transform: scale(1.05);
 }
 
-header, footer {
+ footer {
   background-color: #4B8A3D;
   color: #ffffff;
   padding: 1em;
