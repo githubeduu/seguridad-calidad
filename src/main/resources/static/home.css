@@ -1,14 +1,21 @@
-.header {
-  background-image: url(../img/header.webp);
-  /* background-image: url(../img/banner.jpg); */
-color: white;
-background-color: #111518;
+.header-home {
+  position: relative;
   height: 40rem;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center bottom;
+  overflow: hidden;
+  color: #ffffff;
 }
 
+.header-home .header-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Estilos generales */
 .contenedor {
   display: flex;
   justify-content: space-between;
@@ -17,36 +24,107 @@ background-color: #111518;
 
 .contenedor .contendor_titulo {
   text-align: start;
+  color: #ffffff; /* Color blanco para los títulos en el header */
 }
 
 .logo__nombre {
   font-weight: 400;
+  color: #ffffff; /* Color blanco para el logo */
 }
-/* footer {
-  background-color: #4b8a3d; 
-  color: #ffffff; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh;
-} */
+
 .logo__nombre .logo_bold {
   font-weight: 700;
+  color: #ffffff; /* Color blanco para el logo en negrita */
 }
+
+/* Main container styles */
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
   text-align: center;
 }
+
 main h1 {
   font-weight: bold;
 }
 
-.carousel-inner .carousel-item {
-	height: 30rem;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
-
+/* Estilos de las tarjetas */
+.card {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s;
 }
-.carousel-item img{
-  height: 100%;
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+/* Header y Footer */
+footer {
+  background-color: #4B8A3D;
+  color: #ffffff;
+  padding: 1em;
+  text-align: center;
+}
+
+/* Navbar */
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+/* Banners */
+.banners img {
+  width: 35%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Form container */
+.container_form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 12px;
+}
+
+/* Recetas */
+.recetas {
+  padding: 20px;
+}
+
+/* Carousel */
+.carousel-item img {
+  width: 100%;
+  height: auto; /* Ajusta la altura según el ancho para mantener la proporción */
+  object-fit: cover; /* Asegura que la imagen cubra todo el área sin distorsión */
+}
+
+.carousel-container {
+  max-width: 1200px; /* Ajustar según sea necesario */
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .carousel-item {
+    height: 20rem; /* Reducir altura para pantallas más pequeñas */
+  }
 }

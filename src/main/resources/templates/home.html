@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" />
     <title>Recetas</title>
-    <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/home.css" />
     <link
       rel="stylesheet"
@@ -24,7 +23,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <header class="header">
+    <header class="header-home">
+      <img th:src="@{/img/header.webp}" alt="Header Image" class="header-image">
       <article class="contenedor">
         <div class="contendor_titulo">
           <h1 class="logo__nombre">
@@ -118,55 +118,35 @@
 
       <section>
         <h2>Otras Recetas</h2>
-      </section>
-      <article
-        id="carouselExampleIndicators"
-        class="carousel slide my-3"
-        data-ride="carousel"
-      >
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="10">
-            <img
-              th:src="@{/img/5267344.jpg}"
-              class="d-block w-100"
-              alt="Banner 1"
-            />
-          </div>
-          <div class="carousel-item" data-bs-interval="10">
-            <img
-              th:src="@{/img/pie2.jpg}"
-              class="d-block w-100"
-              alt="Banner 2"
-            />
-          </div>
-          <div class="carousel-item" data-bs-interval="10">
-            <img
-              th:src="@{/img/banner3.png}"
-              class="d-block w-100"
-              alt="Banner 3"
-            />
-          </div>
+    </section>
+    <article class="carousel-container">
+        <div id="carouselExampleIndicators" class="carousel slide my-3" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10">
+                    <img th:src="@{/img/banner1.png}" class="d-block w-100" alt="Banner 1" />
+                </div>
+                <div class="carousel-item" data-bs-interval="10">
+                    <img th:src="@{/img/banner2.png}" class="d-block w-100" alt="Banner 2" />
+                </div>
+                <div class="carousel-item" data-bs-interval="10">
+                    <img th:src="@{/img/banner3.png}" class="d-block w-100" alt="Banner 3" />
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-        <a
-          class="carousel-control-prev"
-          href="#carouselExampleIndicators"
-          role="button"
-          data-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a
-          class="carousel-control-next"
-          href="#carouselExampleIndicators"
-          role="button"
-          data-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </article>
+    </article>
     </main>
+
+    
+
+
 
     <footer>
       <p>&copy; 2024 Recetas Deliciosas. Todos los derechos reservados.</p>
