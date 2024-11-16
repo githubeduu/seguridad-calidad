@@ -1,0 +1,82 @@
+html,
+body {
+  min-height: 100%;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+main {
+  min-height: 80vh;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-top: 50px;
+}
+
+.custom-file-upload {
+  border: 3px dotted black;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  padding: 150px;
+}
+input[type="file"] {
+  display: none;
+}
+img {
+  cursor: pointer;
+}
+header,
+footer {
+  height: 10vh;
+  background-color: #4b8a3d;
+  color: #ffffff;
+  text-align: center;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#form {
+  width: 250px;
+  margin: 0 auto;
+  height: 50px;
+}
+
+#form p {
+  text-align: center;
+}
+
+#form label {
+  font-size: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+  font-size: 2rem;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
+.section_form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
