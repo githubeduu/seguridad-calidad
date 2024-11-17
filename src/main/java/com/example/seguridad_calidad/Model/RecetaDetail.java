@@ -1,47 +1,60 @@
 package com.example.seguridad_calidad.Model;
 
 public class RecetaDetail {
-    private String nombre;
-    private String imagen;
+
+    private int detalleId;
     private String ingredientes;
     private String instrucciones;
     private String tiempoCoccion;
     private String dificultad;
+    private Receta receta; // Nuevo campo
 
-    public RecetaDetail(String nombre,
-            String imagen,
-            String ingredientes, String instrucciones, String tiempoCoccion,
-            String dificultad) {
-        this.nombre = nombre;
-        this.imagen = imagen;
-        this.ingredientes = ingredientes;
-        this.instrucciones = instrucciones;
-        this.tiempoCoccion = tiempoCoccion;
-        this.dificultad = dificultad;
+    // Getters y Setters
+    public int getDetalleId() {
+        return detalleId;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setDetalleId(int detalleId) {
+        this.detalleId = detalleId;
     }
 
-    public String getImagen() {
-        return imagen;
-    }
-
-    public String ingredientes() {
+    public String getIngredientes() {
         return ingredientes;
     }
 
-    public String instrucciones() {
+    public void setIngredientes(String ingredientes) {
+        this.ingredientes = ingredientes;
+    }
+
+    public String getInstrucciones() {
         return instrucciones;
     }
 
-    public String tiempoCoccion() {
+    public void setInstrucciones(String instrucciones) {
+        this.instrucciones = instrucciones;
+    }
+
+    public String getTiempoCoccion() {
         return tiempoCoccion;
     }
 
-    public String dificultad() {
+    public void setTiempoCoccion(String tiempoCoccion) {
+        this.tiempoCoccion = tiempoCoccion;
+    }
+
+    public String getDificultad() {
         return dificultad;
     }
 
+    public void setDificultad(String dificultad) {
+        this.dificultad = dificultad;
+    }
+
+    public Receta getReceta() {
+        return receta;
+    }
+
+    public void setReceta(Receta receta) {
+        this.receta = receta;
+    }
 }

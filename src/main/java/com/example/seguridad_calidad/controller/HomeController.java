@@ -24,12 +24,14 @@ public class HomeController {
     
     @GetMapping("/home")
     public String home(HttpSession session, Model model) {
-        model.addAttribute("name", "Seguridad y Calidad en el Desarrollo");
         List<Receta> recetas = recetaService.obtenerRecetasPublicas();
         model.addAttribute("recetas", recetas);
+
         String username = (String) session.getAttribute("username");
         model.addAttribute("username", username);
+
         return "Home";
     }
+
 }
 
