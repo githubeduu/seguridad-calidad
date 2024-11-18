@@ -54,5 +54,12 @@ button a:hover {
 }
 
 .modal-header .close:hover {
-  color: #dc3545; /* Cambia el color en hover si lo deseas */
+  color: #dc3545; 
+}
+
+.youtube-video {
+  width: 80%; /* Ajusta el tamaño horizontal del video */
+  max-width: 800px; /* Establece un ancho máximo para pantallas grandes */
+  height: 450px; /* Ajusta la altura proporcional al ancho */
+  margin: 0 auto; /* Centra el video horizontalmente */
 }

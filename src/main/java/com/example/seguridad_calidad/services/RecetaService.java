@@ -67,35 +67,38 @@ private final RestTemplate restTemplate;
 
 
 
-    public String subirMedia(int recetaId, String tipo, MultipartFile file) {
-    String url = "http://localhost:8087/recetas/" + recetaId + "/media";
-
-    try {
-        // Crear una entidad HTTP con multipart/form-data
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-
-        // Construir el cuerpo de la solicitud
-        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-        body.add("tipo", tipo);
-        body.add("file", new ByteArrayResource(file.getBytes()) {
-            @Override
-            public String getFilename() {
-                return file.getOriginalFilename();
+        public String subirMedia(int recetaId, String tipo, MultipartFile file, String youtubeUrl) {
+            String url = "http://localhost:8087/recetas/" + recetaId + "/media";
+        
+            try {
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        
+                MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+                body.add("tipo", tipo);
+        
+                if ("youtube".equalsIgnoreCase(tipo)) {
+                    // Añadir el enlace de YouTube
+                    body.add("youtubeUrl", youtubeUrl);
+                } else {
+                    // Añadir archivo (foto o video)
+                    body.add("file", new ByteArrayResource(file.getBytes()) {
+                        @Override
+                        public String getFilename() {
+                            return file.getOriginalFilename();
+                        }
+                    });
+                }
+        
+                HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+                ResponseEntity<String> response = restTemplate.postForEntity(url, requestEntity, String.class);
+        
+                return response.getBody();
+            } catch (Exception e) {
+                throw new RuntimeException("Error al subir el archivo o enlace: " + e.getMessage());
             }
-        });
-
-        // Crear la solicitud HTTP
-        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
-
-        // Enviar la solicitud al backend
-        ResponseEntity<String> response = restTemplate.postForEntity(url, requestEntity, String.class);
-
-        return response.getBody(); // Retorna el mensaje de éxito o error
-    } catch (Exception e) {
-        throw new RuntimeException("Error al subir el archivo: " + e.getMessage());
-    }
-}
+        }
+        
    
     public Map<String, List<String>> obtenerMediosPorReceta(int recetaId) {
         String url = "http://localhost:8087/recetas/" + recetaId + "/media";
@@ -118,28 +121,6 @@ private final RestTemplate restTemplate;
                 .toList();
     }
 
-    public void subirEnlaceYoutube(int recetaId, String youtubeUrl) {
-    try {
-        // Crear una entidad HTTP para enviar el enlace
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        // Crear el cuerpo de la solicitud
-        Map<String, String> body = new HashMap<>();
-        body.put("tipo", "youtube");
-        body.put("youtubeUrl", youtubeUrl);
-
-        // Crear la solicitud HTTP
-        HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(body, headers);
-
-        // URL del endpoint del backend para subir enlaces de YouTube
-        String url = "http://localhost:8087/recetas/" + recetaId + "/media";
-
-        // Enviar la solicitud
-        restTemplate.postForEntity(url, requestEntity, String.class);
-    } catch (Exception e) {
-        throw new RuntimeException("Error al subir el enlace de YouTube: " + e.getMessage());
-    }
-}
+   
 }
 

@@ -72,12 +72,12 @@ public class RecetaController {
         try {
             if ("youtube".equalsIgnoreCase(tipo) && youtubeUrl != null) {
                 // Guardar enlace de YouTube
-                recetaService.subirEnlaceYoutube(id, youtubeUrl);
+                recetaService.subirMedia(id, tipo, null, youtubeUrl);
                 redirectAttributes.addFlashAttribute("mensaje", "Enlace de YouTube subido con éxito.");
             } else if (file != null && !file.isEmpty()) {
                 // Guardar imagen o video
-                String mensaje = recetaService.subirMedia(id, tipo, file);
-                redirectAttributes.addFlashAttribute("mensaje", mensaje);
+                recetaService.subirMedia(id, tipo, file, null);
+                redirectAttributes.addFlashAttribute("mensaje", "Archivo subido con éxito.");
             } else {
                 redirectAttributes.addFlashAttribute("error", "Debe proporcionar un archivo o un enlace de YouTube.");
             }
@@ -87,3 +87,4 @@ public class RecetaController {
         return "redirect:/recetas/" + id;
     }
 }
+

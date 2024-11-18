@@ -51,7 +51,7 @@
 
         <!-- Mostrar enlaces de YouTube -->
         <div class="carousel-item" th:classappend="${iterStat.index == 0 && media.imagenes.isEmpty() && media.videos.isEmpty() ? ' active' : ''}" th:each="youtubeLink, iterStat : ${media.youtubeLinks}">
-          <iframe class="d-block w-100" th:src="${youtubeLink}" frameborder="0" allowfullscreen></iframe>
+          <iframe class="d-block w-100 youtube-video" th:src="${youtubeLink}" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
 
