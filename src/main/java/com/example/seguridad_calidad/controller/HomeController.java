@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import com.example.seguridad_calidad.Model.Receta;
 import com.example.seguridad_calidad.services.RecetaService;
 
@@ -32,6 +31,5 @@ public class HomeController {
 
         return "Home";
     }
-
 }
 

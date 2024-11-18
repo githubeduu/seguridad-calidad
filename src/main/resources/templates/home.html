@@ -23,7 +23,7 @@
   </head>
   <body>
     <header class="header-home">
-      <img th:src="@{/img/header.webp}" alt="Header Image" class="header-image">
+      <img th:src="@{/img/header.webp}" alt="Header Image" class="header-image" />
       <article class="contenedor">
         <div class="contendor_titulo">
           <h1 class="logo__nombre">
@@ -60,7 +60,7 @@
       <article class="row" id="recipeContainer">
         <div class="card col-3" th:each="receta : ${recetas}">
           <a th:href="@{/recetas/{id}(id=${receta.recetaId})}">
-            <div id="carousel-${receta.recetaId}" class="carousel slide my-4" data-bs-ride="carousel" th:if="${receta.media != null}">
+            <div id="carousel-${receta.recetaId}" class="carousel slide my-4" data-ride="carousel" th:if="${receta.media != null}">
               <div class="carousel-inner">
                 <!-- Imágenes -->
                 <div class="carousel-item" th:classappend="${iterStat.index == 0 ? ' active' : ''}" th:each="imagen, iterStat : ${receta.media.imagenes}">
@@ -77,15 +77,15 @@
 
                 <!-- Enlaces de YouTube -->
                 <div class="carousel-item" th:classappend="${iterStat.index == 0 && receta.media.imagenes.isEmpty() && receta.media.videos.isEmpty() ? ' active' : ''}" th:each="youtubeLink, iterStat : ${receta.media.youtubeLinks}">
-                  <iframe class="d-block w-100" th:src="${youtubeLink}" frameborder="0" allowfullscreen></iframe>
+                  <iframe class="d-block w-100 youtube-video" th:src="${youtubeLink}" frameborder="0" allowfullscreen></iframe>
                 </div>
               </div>
 
-              <a class="carousel-control-prev" th:href="'#carousel-' + ${receta.recetaId}" role="button" data-bs-slide="prev">
+              <a class="carousel-control-prev" href="#carousel-${receta.recetaId}" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
               </a>
-              <a class="carousel-control-next" th:href="'#carousel-' + ${receta.recetaId}" role="button" data-bs-slide="next">
+              <a class="carousel-control-next" href="#carousel-${receta.recetaId}" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
               </a>
@@ -100,6 +100,34 @@
             <p><strong>Ingredientes:</strong> <span th:text="${receta.ingredientes}"></span></p>
             <p><strong>Dificultad:</strong> <span th:text="${receta.dificultad}"></span></p>
           </div>
+
+          <div class="comentarios-list">
+            <h3>Comentarios</h3>
+            <div id="comentariosCarousel-${receta.recetaId}" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item" th:each="comentario, iterStat : ${receta.comentarios}" th:classappend="${iterStat.index == 0 ? ' active' : ''}">
+                  <div class="comentario-item text-center">
+                    <p><strong th:text="${comentario.usuario}"></strong> dice:</p>
+                    <p th:text="${comentario.comentario}"></p>
+                    <p>
+                      <span th:each="i : ${#numbers.sequence(1, 5)}" 
+                            th:classappend="${i <= comentario.puntuacion ? 'fas fa-star text-warning' : 'far fa-star text-warning'}">
+                      </span>
+                  </p>
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#comentariosCarousel-${receta.recetaId}" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#comentariosCarousel-${receta.recetaId}" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+                          
         </div>
       </article>
 
@@ -130,8 +158,4 @@
     </main>
 
     <footer>
-      <p>&copy; 2024 Recetas Deliciosas. Todos los derechos reservados.</p>
-    </footer>
-    <script src="/js/search.js"></script>
-  </body>
-</html>
+      <p>&copy; 2024 Recetas Deliciosas. Todos los derechos

@@ -86,6 +86,18 @@
           <p class="text-muted"><strong>Dificultad:</strong> <span th:text="${recetaDetalle.dificultad}">Fácil</span></p>
         </div>
       </section>
+
+      <section class="d-flex justify-content-center my-5">
+        <!-- Botón para abrir el modal de comentarios -->
+        <button 
+            type="button" 
+            class="btn btn-primary mt-3" 
+            data-toggle="modal" 
+            data-target="#comentarioModal">
+            Comentar y Evaluar
+        </button>
+      </section>
+
        <!-- Botones -->
        <section class="d-flex justify-content-center my-5">
         <button 
@@ -164,6 +176,50 @@
             </div>
           </div>
         </div>    
+
+
+        <!-- Modal -->
+<div class="modal fade" id="comentarioModal" tabindex="-1" aria-labelledby="comentarioModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="comentarioModalLabel">Comentar y Evaluar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/recetas/{id}/comentarios(id=${recetaDetalle.receta.recetaId})}" method="post">
+          <!-- Nombre del usuario -->
+          <div class="form-group">
+            <label for="usuario">Nombre</label>
+            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresa tu nombre" required>
+          </div>
+          <!-- Comentario -->
+          <div class="form-group">
+            <label for="comentario">Comentario</label>
+            <textarea class="form-control" id="comentario" name="comentario" rows="3" placeholder="Escribe tu comentario" required></textarea>
+          </div>
+          <!-- Puntuación -->
+          <div class="form-group">
+            <label for="puntuacion">Puntuación</label>
+            <select class="form-control" id="puntuacion" name="puntuacion" required>
+              <option value="1">1 estrella</option>
+              <option value="2">2 estrellas</option>
+              <option value="3">3 estrellas</option>
+              <option value="4">4 estrellas</option>
+              <option value="5">5 estrellas</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Enviar comentario</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
         
 
     <footer>

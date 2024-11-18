@@ -128,3 +128,43 @@ footer {
     height: 20rem; /* Reducir altura para pantallas más pequeñas */
   }
 }
+
+/* Estilo para los iconos de control */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con transparencia */
+    border-radius: 50%; /* Forma circular */
+    width: 2rem; /* Tamaño ajustado */
+    height: 2rem; /* Tamaño ajustado */
+}
+
+/* Elimina bordes visibles en los botones de control */
+.carousel-control-prev,
+.carousel-control-next {
+    border: none;
+    background: none; /* Sin fondo */
+    outline: none; /* Sin bordes al enfocar */
+}
+
+/* Reduce el área de clic */
+.carousel-control-prev,
+.carousel-control-next {
+    width: auto;
+    height: auto;
+}
+
+/* Ajusta márgenes y padding */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    margin: 0;
+    padding: 0;
+}
+
+.youtube-video {
+  width: 80%; /* Ajusta el tamaño horizontal del video */
+  max-width: 800px; /* Establece un ancho máximo para pantallas grandes */
+  height: 450px; /* Ajusta la altura proporcional al ancho */
+  margin: 0 auto; /* Centra el video horizontalmente */
+}
+
+

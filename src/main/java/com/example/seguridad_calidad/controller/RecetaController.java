@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.seguridad_calidad.DTO.ComentarioDto;
 import com.example.seguridad_calidad.Model.Receta;
 import com.example.seguridad_calidad.Model.RecetaDetail;
 import com.example.seguridad_calidad.services.RecetaDetailService;
@@ -86,5 +87,30 @@ public class RecetaController {
         }
         return "redirect:/recetas/" + id;
     }
+
+
+    @PostMapping("/recetas/{id}/comentarios")
+    public String agregarComentario(
+            @PathVariable int id,
+            @RequestParam String usuario,
+            @RequestParam String comentario,
+            @RequestParam int puntuacion,
+            RedirectAttributes redirectAttributes) {
+        try {
+            // Crear el DTO de comentario
+            ComentarioDto nuevoComentario = new ComentarioDto(usuario, comentario, puntuacion);
+
+            // Enviar el comentario al servicio
+            recetaService.agregarComentario(id, nuevoComentario);
+
+            // Mensaje de éxito
+            redirectAttributes.addFlashAttribute("mensaje", "Comentario agregado con éxito.");
+        } catch (Exception e) {
+            // Mensaje de error
+            redirectAttributes.addFlashAttribute("error", "Error al agregar el comentario: " + e.getMessage());
+        }
+        return "redirect:/recetas/" + id;
+    }
+
 }
 

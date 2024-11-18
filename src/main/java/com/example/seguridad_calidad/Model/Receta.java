@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.example.seguridad_calidad.DTO.ComentarioResponseDto;
+
 public class Receta {
     private Long recetaId;
     private String nombre;
@@ -13,9 +15,10 @@ public class Receta {
     private String dificultad;
     private Date fechaCreacion;
     private Map<String, List<String>> media; // Agregado: Lista de medios
+    private List<ComentarioResponseDto> comentarios;
 
     // Constructor
-    public Receta(Long recetaId, String nombre, String categoria, String ingredientes, String origen, String dificultad, Date fechaCreacion, Map<String, List<String>> media) {
+    public Receta(Long recetaId, String nombre, String categoria, String ingredientes, String origen, String dificultad, Date fechaCreacion, Map<String, List<String>> media, List<ComentarioResponseDto> comentarios) {
         this.recetaId = recetaId;
         this.nombre = nombre;
         this.categoria = categoria;
@@ -24,6 +27,7 @@ public class Receta {
         this.dificultad = dificultad;
         this.fechaCreacion = fechaCreacion;
         this.media = media;
+        this.comentarios = comentarios;
     }
 
     // Getters y Setters
@@ -89,5 +93,13 @@ public class Receta {
 
     public void setMedia(Map<String, List<String>> media) {
         this.media = media;
+    }
+
+    public List<ComentarioResponseDto> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioResponseDto> comentarios) {
+        this.comentarios = comentarios;
     }
 }

@@ -5,19 +5,23 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.seguridad_calidad.DTO.ComentarioDto;
+import com.example.seguridad_calidad.DTO.ComentarioResponseDto;
 import com.example.seguridad_calidad.Model.Receta;
 
 
@@ -30,32 +34,51 @@ private final RestTemplate restTemplate;
         this.restTemplate = restTemplate;
     }
 
-    public List<Receta> obtenerRecetasPublicas() {
+      public List<Receta> obtenerRecetasPublicas() {
         String url = "http://localhost:8087/recetas";
         Receta[] recetasArray = restTemplate.getForObject(url, Receta[].class);
-    
+
         if (recetasArray != null) {
             for (Receta receta : recetasArray) {
-                // URL para obtener los medios asociados a la receta
+                // Obtener medios asociados
                 String mediaUrl = "http://localhost:8087/recetas/" + receta.getRecetaId() + "/media";
                 try {
-                    // Obtener medios desde el backend
                     Map<String, List<String>> media = restTemplate.getForObject(mediaUrl, Map.class);
-                    if (media != null) {
-                        receta.setMedia(media); // Asignar medios a la receta
-                    }
-                } catch (HttpClientErrorException.NotFound e) {
-                    // Si no se encontraron medios, asignar valores vacíos
+                    receta.setMedia(media);
+                } catch (Exception e) {
                     receta.setMedia(Map.of(
-                            "imagenes", new ArrayList<>(),
-                            "videos", new ArrayList<>(),
-                            "youtubeLinks", new ArrayList<>()
+                            "imagenes", List.of(),
+                            "videos", List.of(),
+                            "youtubeLinks", List.of()
                     ));
+                }
+
+                // Obtener comentarios asociados
+                String comentariosUrl = "http://localhost:8087/recetas/" + receta.getRecetaId() + "/comentarios";
+                try {
+                    ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
+                            comentariosUrl,
+                            HttpMethod.GET,
+                            null,
+                            new ParameterizedTypeReference<List<Map<String, Object>>>() {}
+                    );
+
+                    List<ComentarioResponseDto> comentarios = response.getBody().stream()
+                            .map(data -> new ComentarioResponseDto(
+                                    (String) data.get("usuario"),
+                                    (String) data.get("comentario"),
+                                    (Integer) data.get("puntuacion")
+                            ))
+                            .collect(Collectors.toList());
+
+                    receta.setComentarios(comentarios);
+                } catch (Exception e) {
+                    receta.setComentarios(List.of());
                 }
             }
         }
-    
-        return recetasArray != null ? Arrays.asList(recetasArray) : new ArrayList<>();
+
+        return recetasArray != null ? Arrays.asList(recetasArray) : List.of();
     }
     
 
@@ -121,6 +144,17 @@ private final RestTemplate restTemplate;
                 .toList();
     }
 
+    public void agregarComentario(int recetaId, ComentarioDto comentarioDto) {
+        String url = "http://localhost:8087/recetas/" + recetaId + "/comentarios";
+    
+        try {
+            // Realiza una solicitud POST para enviar el comentario
+            restTemplate.postForEntity(url, comentarioDto, Void.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Error al enviar el comentario: " + e.getMessage(), e);
+        }
+    }
+    
    
 }
 
