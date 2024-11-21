@@ -47,6 +47,8 @@ public class LoginController {
                 // Almacenar el token en sesión
                 session.setAttribute("token", token);
                 session.setAttribute("username", userMap.get("nombre"));
+                session.setAttribute("rolId", userMap.get("rolId"));
+
                 
                 return "redirect:/home"; 
             } else {

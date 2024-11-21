@@ -1,49 +1,40 @@
-/* Estilos generales para la página de recetas */
+/* Estilos específicos para la página de recetas */
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  background-color: #f8f9fa; /* Color de fondo claro */
+  background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Asegura que el cuerpo ocupe al menos toda la altura de la ventana */
+  min-height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
 }
 
 .col-12 {
   display: flex;
   justify-content: center;
 }
+
 .col-12 img {
   height: 380px;
   border-radius: 12px;
 }
+
 main h2 {
   text-align: center;
   font-weight: 600;
 }
+
 main h3 {
   font-weight: 100;
 }
-/* .border_info{
-    border: solid 1px ;
-} */
-footer {
-  background-color: #4b8a3d; /* Verde oliva */
-  color: #ffffff; /* Texto en blanco */
-  display: flex!important;
-  justify-content: center!important;
-  align-items: center!important;
-  height: 10vh;
-}
-button a {
-  color: white;
-  text-decoration: none;
-}
-button a:hover {
-  color: white;
-  text-decoration: none;
+
+/* Carrusel */
+.carousel-inner img {
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-
+/* Modal */
 .modal-header .close {
   font-size: 1.5rem;
   color: #000;
@@ -54,12 +45,27 @@ button a:hover {
 }
 
 .modal-header .close:hover {
-  color: #dc3545; 
+  color: #dc3545;
 }
 
 .youtube-video {
-  width: 80%; /* Ajusta el tamaño horizontal del video */
-  max-width: 800px; /* Establece un ancho máximo para pantallas grandes */
-  height: 450px; /* Ajusta la altura proporcional al ancho */
-  margin: 0 auto; /* Centra el video horizontalmente */
+  width: 80%;
+  max-width: 800px;
+  height: 450px;
+  margin: 0 auto;
+}
+
+/* Botón "Volver" */
+.btn-secondary {
+  background-color: #007bff;
+  border: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: #0056b3;
+  color: #ffffff;
 }

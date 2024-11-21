@@ -35,21 +35,26 @@
         </div>
         <nav>
           <ul class="nav-links">
-            <li th:if="${username == null}">
-              <a href="/login">
-                <i class="fas fa-user"></i> Inicio de Sesión
-              </a>
-              <a href="/registro">
-                <i class="fas fa-user"></i> Registro de Usuario
-              </a>
-            </li>
-            <li th:if="${username != null}">
-              <a href="/logout">
-                <i class="fas fa-sign-out-alt"></i> Cierre de Sesión
-              </a>
-            </li>
+              <li th:if="${username == null}">
+                  <a href="/login">
+                      <i class="fas fa-user"></i> Inicio de Sesión
+                  </a>
+                  <a href="/registro">
+                      <i class="fas fa-user"></i> Registro de Usuario
+                  </a>
+              </li>
+              <li th:if="${rolId == 1}">
+                <a href="/mantenedor-usuarios">
+                    <i class="fas fa-users"></i> Mantenedor de usuarios
+                </a>
+            </li>            
+              <li th:if="${username != null}">
+                  <a href="/logout">
+                      <i class="fas fa-sign-out-alt"></i> Cierre de Sesión
+                  </a>
+              </li>
           </ul>
-        </nav>
+      </nav>
       </article>
     </header>
 
@@ -158,4 +163,7 @@
     </main>
 
     <footer>
-      <p>&copy; 2024 Recetas Deliciosas. Todos los derechos
+      <p>&copy; 2024 Recetas Deliciosas. Todos los derechos</p>
+    </footer>
+  </body>
+</html>

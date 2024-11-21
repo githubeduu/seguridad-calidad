@@ -68,13 +68,18 @@ main h1 {
   transform: scale(1.05);
 }
 
-/* Header y Footer */
+/* Footer */
 footer {
-  background-color: #4B8A3D;
-  color: #ffffff;
-  padding: 1em;
+  background: linear-gradient(45deg, #007bff, #00c6ff); /* Degradado similar al resto de las vistas */
+  color: white;
+  padding: 10px 0;
   text-align: center;
+  margin-top: 20px; /* Espaciado superior para separar del contenido */
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
+
 
 /* Navbar */
 .nav-links {

@@ -1,0 +1,30 @@
+/* General Header and Footer Design */
+header, footer {
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 4px solid white;
+}
+
+header h1, footer p {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Footer always at the bottom */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1; /* Fills the remaining space to push the footer to the bottom */
+}
+
+footer {
+    width: 100%;
+    position: relative;
+}

@@ -26,6 +26,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/img/**").permitAll()
                         .requestMatchers("/recetas").authenticated() // Proteger acceso a /recetas y subrutas
                         .requestMatchers("/recetas/**").authenticated()
+                        .requestMatchers("/mantenedor-usuarios").authenticated()
                         .anyRequest().permitAll()
 
                 )

@@ -1,0 +1,64 @@
+/* Contenedor Principal */
+.mantenedor-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Tabla */
+.table-container {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-table thead {
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.custom-table thead th {
+    text-align: center;
+    padding: 15px;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.custom-table td {
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+/* Botón "Volver" */
+.btn-secondary {
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: #0056b3;
+    color: #ffffff;
+}
+
+/* Fondo general de la página */
+body {
+    background-color: #eef2f3;
+}

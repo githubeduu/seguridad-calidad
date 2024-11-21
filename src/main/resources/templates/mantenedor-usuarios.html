@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mantenedor de Usuarios</title>
+    <link rel="stylesheet" href="/style/header-footer.css" />
+    <link rel="stylesheet" href="/style/mantenedor.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <header class="header-mantenedor">
+        <h1 class="text-center mb-4">Mantenedor de Usuarios</h1>
+    </header>
+    <main class="mantenedor-container">
+        <div class="container mt-5 table-container">
+            <div class="table-responsive">
+                <table class="table table-striped custom-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>RUT</th>
+                            <th>Dirección</th>
+                            <th>Comuna</th>
+                            <th>Rol</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="usuario : ${usuarios}">
+                            <td th:text="${usuario.nombre}"></td>
+                            <td th:text="${usuario.rut}"></td>
+                            <td th:text="${usuario.direccion}"></td>
+                            <td th:text="${usuario.comuna}"></td>
+                            <td th:text="${usuario.roles.rol}"></td>
+                            <td>
+                                <button
+                                    class="btn btn-danger btn-sm"
+                                    th:onclick="'deleteUser(' + ${usuario.id} + ')'">
+                                    Eliminar
+                                </button>
+
+
+                                <button
+                                    class="btn btn-primary btn-sm"
+                                    data-bs-toggle="modal"
+                                    th:attr="data-id=${usuario.id},data-nombre=${usuario.nombre},data-rut=${usuario.rut},data-direccion=${usuario.direccion},data-comuna=${usuario.comuna},data-rol=${usuario.roles.rol}"
+                                    data-bs-target="#updateModal">
+                                    Actualizar
+                                </button>
+
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(usuarios)}">
+                            <td colspan="5" class="text-center">No hay usuarios registrados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-4">
+                <a href="/home" class="btn btn-secondary btn-lg">Volver</a>
+            </div>
+        </div>
+    </main>
+
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar este usuario?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteUser()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">Actualizar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateForm">
+                        <input type="hidden" id="updateUserId">
+                        <div class="mb-3">
+                            <label for="updateUserName" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="updateUserName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateRut" class="form-label">RUT</label>
+                            <input type="text" class="form-control" id="updateRut">
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateDireccion" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="updateDireccion">
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateComuna" class="form-label">Comuna</label>
+                            <input type="text" class="form-control" id="updateComuna">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+    <footer class="footer-mantenedor">
+        <p>&copy; 2024 Recetas Deliciosas. Todos los derechos reservados.</p>
+    </footer>
+    <script src="/js/mantenedor.js"></script>
+</body>
+</html>
