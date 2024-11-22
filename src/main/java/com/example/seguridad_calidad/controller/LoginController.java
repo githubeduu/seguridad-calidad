@@ -27,30 +27,39 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, Model model, HttpSession session) {
+    public String login(@RequestParam String username, @RequestParam String password, 
+                        Model model, HttpSession session, HttpServletRequest request) {
         String loginUrl = "http://localhost:8085/auth/login";
-    
+
         // Crear el cuerpo de la solicitud
         Map<String, String> credentials = new HashMap<>();
         credentials.put("username", username);
         credentials.put("password", password);
-    
+
         // Realizar la solicitud POST al backend
         RestTemplate restTemplate = new RestTemplate();
         try {
             ResponseEntity<Map<String, Object>> response = restTemplate.postForEntity(loginUrl, credentials, (Class<Map<String, Object>>) (Class<?>) Map.class);
             Map<String, Object> responseBody = response.getBody();
+
             if (responseBody != null) {
                 Map<String, Object> userMap = (Map<String, Object>) responseBody.get("user");
                 String token = (String) responseBody.get("token");
-    
-                // Almacenar el token en sesión
+
+                // Almacenar el token en la sesión
                 session.setAttribute("token", token);
                 session.setAttribute("username", userMap.get("nombre"));
                 session.setAttribute("rolId", userMap.get("rolId"));
 
-                
-                return "redirect:/home"; 
+                // Verificar si la solicitud es AJAX
+                String requestedWith = request.getHeader("X-Requested-With");
+                if ("XMLHttpRequest".equals(requestedWith)) {
+                    // Si es AJAX, devolver JSON
+                    return "redirect:/home";
+                } else {
+                    // Si no es AJAX, redirigir a /home
+                    return "redirect:/home";
+                }
             } else {
                 model.addAttribute("error", "Respuesta vacía del servidor");
                 return LOGIN;
@@ -65,10 +74,10 @@ public class LoginController {
             return LOGIN;
         }
     }
-    
 
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletRequest request) {
+        request.getSession().invalidate(); // Invalidar la sesión
         return ResponseEntity.ok("Logout successful");
     }
 }

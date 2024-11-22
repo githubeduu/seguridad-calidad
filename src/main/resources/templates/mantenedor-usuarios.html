@@ -45,13 +45,16 @@
                             <td th:text="${usuario.comuna}"></td>
                             <td th:text="${usuario.roles.rol}"></td>
                             <td>
-                                <button
-                                    class="btn btn-danger btn-sm"
-                                    th:onclick="'deleteUser(' + ${usuario.id} + ')'">
+                                <!-- Botón para abrir el modal de eliminación -->
+                                <button 
+                                    class="btn btn-danger btn-sm" 
+                                    data-bs-toggle="modal" 
+                                    th:attr="data-id=${usuario.id}" 
+                                    data-bs-target="#deleteModal">
                                     Eliminar
                                 </button>
 
-
+                                <!-- Botón para actualizar -->
                                 <button
                                     class="btn btn-primary btn-sm"
                                     data-bs-toggle="modal"
@@ -59,11 +62,10 @@
                                     data-bs-target="#updateModal">
                                     Actualizar
                                 </button>
-
                             </td>
                         </tr>
                         <tr th:if="${#lists.isEmpty(usuarios)}">
-                            <td colspan="5" class="text-center">No hay usuarios registrados</td>
+                            <td colspan="6" class="text-center">No hay usuarios registrados</td>
                         </tr>
                     </tbody>
                 </table>
@@ -74,7 +76,7 @@
         </div>
     </main>
 
-
+    <!-- Modal para Confirmar Eliminación -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -83,16 +85,20 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ¿Estás seguro de que deseas eliminar este usuario?
+                    <p>¿Estás seguro de que deseas eliminar este usuario?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger" onclick="deleteUser()">Eliminar</button>
+                    <form th:action="@{/eliminar-usuario}" method="post">
+                        <input type="hidden" name="id" id="deleteUserId">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal para Actualizar Usuario -->
     <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -101,23 +107,23 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="updateForm">
-                        <input type="hidden" id="updateUserId">
+                    <form id="updateForm" th:action="@{/actualizar-usuario}" method="post">
+                        <input type="hidden" name="id" id="updateUserId">
                         <div class="mb-3">
                             <label for="updateUserName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="updateUserName">
+                            <input type="text" class="form-control" name="nombre" id="updateUserName" required>
                         </div>
                         <div class="mb-3">
                             <label for="updateRut" class="form-label">RUT</label>
-                            <input type="text" class="form-control" id="updateRut">
+                            <input type="text" class="form-control" name="rut" id="updateRut" required>
                         </div>
                         <div class="mb-3">
                             <label for="updateDireccion" class="form-label">Dirección</label>
-                            <input type="text" class="form-control" id="updateDireccion">
+                            <input type="text" class="form-control" name="direccion" id="updateDireccion" required>
                         </div>
                         <div class="mb-3">
                             <label for="updateComuna" class="form-label">Comuna</label>
-                            <input type="text" class="form-control" id="updateComuna">
+                            <input type="text" class="form-control" name="comuna" id="updateComuna" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Actualizar</button>
                     </form>
@@ -125,13 +131,18 @@
             </div>
         </div>
     </div>
-    
-    
-
 
     <footer class="footer-mantenedor">
         <p>&copy; 2024 Recetas Deliciosas. Todos los derechos reservados.</p>
     </footer>
-    <script src="/js/mantenedor.js"></script>
+
+    <script>
+        const deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const userId = button.getAttribute('data-id');
+            document.getElementById('deleteUserId').value = userId;
+        });
+    </script>
 </body>
 </html>

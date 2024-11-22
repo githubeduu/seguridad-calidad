@@ -3,25 +3,33 @@ package com.example.seguridad_calidad.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.seguridad_calidad.Model.Receta;
 import com.example.seguridad_calidad.services.RecetaService;
+import com.example.seguridad_calidad.services.UsuarioService;
 
 import jakarta.servlet.http.HttpSession;
+
 
 
 @Controller
 public class HomeController {
     
      private final RecetaService recetaService;
+     private final UsuarioService usuarioService;
 
-    public HomeController(RecetaService recetaService) {
+    public HomeController(RecetaService recetaService, UsuarioService usuarioService) {
         this.recetaService = recetaService;
+        this.usuarioService = usuarioService;
     }
 
     
@@ -39,25 +47,31 @@ public class HomeController {
         return "Home";
     }
 
-    @GetMapping("/mantenedor-usuarios")
+
+   @GetMapping("/mantenedor-usuarios")
     public String listarUsuarios(Model model) {
-        String url = "http://localhost:8082/usuario";
-        RestTemplate restTemplate = new RestTemplate();
-
-        ResponseEntity<Map> response = restTemplate.getForEntity(url, Map.class);
-        Map<String, Object> responseBody = response.getBody();
-
-        if (responseBody != null && responseBody.containsKey("_embedded")) {
-            Map<String, Object> embedded = (Map<String, Object>) responseBody.get("_embedded");
-            List<Map<String, Object>> usuarios = (List<Map<String, Object>>) embedded.get("usuarioList");
-            
-            // Pasar la lista de usuarios al modelo
-            model.addAttribute("usuarios", usuarios);
-        } else {
-            model.addAttribute("usuarios", List.of()); // Lista vacía si no hay datos
-        }
-
+        List<Map<String, Object>> usuarios = usuarioService.obtenerUsuarios();
+        model.addAttribute("usuarios", usuarios);
         return "mantenedor-usuarios";
     }
+
+    @PostMapping("/eliminar-usuario")
+    public String eliminarUsuario(@RequestParam Long id, HttpSession session, RedirectAttributes redirectAttributes) {
+        String token = (String) session.getAttribute("token");
+
+        if (token == null) {
+            redirectAttributes.addFlashAttribute("error", "No estás autenticado");
+            return "redirect:/mantenedor-usuarios";
+        }
+
+        try {
+            usuarioService.eliminarUsuario(id, token);
+            redirectAttributes.addFlashAttribute("success", "Usuario eliminado exitosamente");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error al eliminar el usuario: " + e.getMessage());
+        }
+
+        return "redirect:/mantenedor-usuarios";
+    }    
 }
 
