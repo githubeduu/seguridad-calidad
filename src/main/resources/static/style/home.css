@@ -70,7 +70,11 @@ main h1 {
 
 /* Footer */
 footer {
-  background: linear-gradient(45deg, #007bff, #00c6ff); /* Degradado similar al resto de las vistas */
+  background: linear-gradient(
+    45deg,
+    #007bff,
+    #00c6ff
+  ); /* Degradado similar al resto de las vistas */
   color: white;
   padding: 10px 0;
   text-align: center;
@@ -79,7 +83,6 @@ footer {
   bottom: 0;
   width: 100%;
 }
-
 
 /* Navbar */
 .nav-links {
@@ -137,32 +140,36 @@ footer {
 /* Estilo para los iconos de control */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con transparencia */
-    border-radius: 50%; /* Forma circular */
-    width: 2rem; /* Tamaño ajustado */
-    height: 2rem; /* Tamaño ajustado */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con transparencia */
+  border-radius: 50%; /* Forma circular */
+  width: 2rem; /* Tamaño ajustado */
+  height: 2rem; /* Tamaño ajustado */
 }
 
 /* Elimina bordes visibles en los botones de control */
 .carousel-control-prev,
 .carousel-control-next {
-    border: none;
-    background: none; /* Sin fondo */
-    outline: none; /* Sin bordes al enfocar */
+  border: none;
+  background: none; /* Sin fondo */
+  outline: none; /* Sin bordes al enfocar */
+}
+
+#loginLinkId {
+  color: blue;
 }
 
 /* Reduce el área de clic */
 .carousel-control-prev,
 .carousel-control-next {
-    width: auto;
-    height: auto;
+  width: auto;
+  height: auto;
 }
 
 /* Ajusta márgenes y padding */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .youtube-video {
@@ -171,5 +178,3 @@ footer {
   height: 450px; /* Ajusta la altura proporcional al ancho */
   margin: 0 auto; /* Centra el video horizontalmente */
 }
-
-
