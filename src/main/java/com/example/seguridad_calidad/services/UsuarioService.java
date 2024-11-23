@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -57,5 +58,34 @@ private static final Logger log = LoggerFactory.getLogger(UsuarioService.class);
         log.error("Error inesperado al eliminar el usuario: {}", e.getMessage());
         throw new RuntimeException("Error inesperado al eliminar el usuario.");
     }
+ }
+
+
+ public void actualizarUsuario(Long id, String contrasena, String direccion, String comuna, int rolId) {
+    String url = "http://localhost:8082/usuario/" + id;
+
+    Map<String, Object> requestBody = Map.of(
+        "contrasena", contrasena,
+        "direccion", direccion,
+        "comuna", comuna,
+        "rolId", rolId
+    );
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+
+    HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
+
+    try {
+        ResponseEntity<Void> response = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Void.class);
+        System.out.println("Respuesta del backend: " + response.getStatusCode());
+    } catch (Exception e) {
+        System.err.println("Error al actualizar el usuario: " + e.getMessage());
+        throw new RuntimeException("Error al actualizar el usuario.");
+    }
 }
+
+
+
+
 }

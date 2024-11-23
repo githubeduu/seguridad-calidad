@@ -3,14 +3,11 @@ package com.example.seguridad_calidad.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.seguridad_calidad.Model.Receta;
@@ -73,5 +70,28 @@ public class HomeController {
 
         return "redirect:/mantenedor-usuarios";
     }    
+
+
+    @PostMapping("/actualizar-usuario")
+    public String actualizarUsuario(
+        @RequestParam Long id,
+        @RequestParam String direccion,
+        @RequestParam String comuna,
+        @RequestParam int rolId,
+        RedirectAttributes redirectAttributes
+    ) {
+        String contrasena = "Duocuc#2610"; // Contraseña fija
+    
+        try {
+            usuarioService.actualizarUsuario(id, contrasena, direccion, comuna, rolId);
+            redirectAttributes.addFlashAttribute("success", "Usuario actualizado exitosamente");
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("error", "Error al actualizar el usuario: " + e.getMessage());
+        }
+    
+        return "redirect:/mantenedor-usuarios";
+    }
+
 }
 

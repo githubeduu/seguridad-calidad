@@ -76,6 +76,43 @@
         </div>
     </main>
 
+<!-- Modal para Actualizar Usuario -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Actualizar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateForm" th:action="@{/actualizar-usuario}" method="post">
+                    <input type="hidden" name="id" id="updateUserId">
+                    <input type="hidden" name="contrasena" value="Duocuc#2610"> <!-- Contraseña fija -->
+                    
+                    <div class="mb-3">
+                        <label for="updateDireccion" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" name="direccion" id="updateDireccion" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateComuna" class="form-label">Comuna</label>
+                        <input type="text" class="form-control" name="comuna" id="updateComuna" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateRol" class="form-label">Rol</label>
+                        <select class="form-control" name="rolId" id="updateRol" required>
+                            <option value="1">Administrador</option>
+                            <option value="2">Usuario</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
     <!-- Modal para Confirmar Eliminación -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -98,39 +135,7 @@
         </div>
     </div>
 
-    <!-- Modal para Actualizar Usuario -->
-    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="updateModalLabel">Actualizar Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="updateForm" th:action="@{/actualizar-usuario}" method="post">
-                        <input type="hidden" name="id" id="updateUserId">
-                        <div class="mb-3">
-                            <label for="updateUserName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" id="updateUserName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="updateRut" class="form-label">RUT</label>
-                            <input type="text" class="form-control" name="rut" id="updateRut" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="updateDireccion" class="form-label">Dirección</label>
-                            <input type="text" class="form-control" name="direccion" id="updateDireccion" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="updateComuna" class="form-label">Comuna</label>
-                            <input type="text" class="form-control" name="comuna" id="updateComuna" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+  
 
     <footer class="footer-mantenedor">
         <p>&copy; 2024 Recetas Deliciosas. Todos los derechos reservados.</p>
@@ -144,5 +149,6 @@
             document.getElementById('deleteUserId').value = userId;
         });
     </script>
+   <script src="/js/modal.js"></script>
 </body>
 </html>
