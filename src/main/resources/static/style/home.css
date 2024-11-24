@@ -70,15 +70,11 @@ main h1 {
 
 /* Footer */
 footer {
-  background: linear-gradient(
-    45deg,
-    #007bff,
-    #00c6ff
-  ); /* Degradado similar al resto de las vistas */
+  background: linear-gradient(45deg, #007bff, #00c6ff);
   color: white;
   padding: 10px 0;
   text-align: center;
-  margin-top: 20px; /* Espaciado superior para separar del contenido */
+  margin-top: 20px;
   position: relative;
   bottom: 0;
   width: 100%;
@@ -137,25 +133,10 @@ footer {
   }
 }
 
-/* Estilo para los iconos de control */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con transparencia */
-  border-radius: 50%; /* Forma circular */
-  width: 2rem; /* Tamaño ajustado */
-  height: 2rem; /* Tamaño ajustado */
-}
-
 /* Elimina bordes visibles en los botones de control */
 .carousel-control-prev,
 .carousel-control-next {
   border: none;
-  background: none; /* Sin fondo */
-  outline: none; /* Sin bordes al enfocar */
-}
-
-#loginLinkId {
-  color: blue;
 }
 
 /* Reduce el área de clic */

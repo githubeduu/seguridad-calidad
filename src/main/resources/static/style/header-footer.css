@@ -1,5 +1,5 @@
 /* General Header and Footer Design */
-header, footer {
+header {
     background: linear-gradient(45deg, #007bff, #00c6ff);
     color: white;
     text-align: center;
@@ -7,24 +7,40 @@ header, footer {
     border-bottom: 4px solid white;
 }
 
-header h1, footer p {
-    margin: 0;
-    font-size: 1.5rem;
+footer {
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+    width: 100%;
+    position: relative; /* Mantiene la posición relativa */
 }
 
-/* Footer always at the bottom */
+/* Tamaño de texto específico */
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Ajustes globales para diseño de páginas */
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Altura mínima igual a la pantalla */
     margin: 0;
+    background-color: #eef2f3; /* Fondo por defecto */
 }
 
 main {
-    flex: 1; /* Fills the remaining space to push the footer to the bottom */
-}
-
-footer {
-    width: 100%;
-    position: relative;
+    flex: 1; /* Rellena el espacio entre header y footer */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

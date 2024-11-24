@@ -32,7 +32,7 @@ public class RegistroController {
             @RequestParam String comuna,
             Model model) {
         
-        String registerUrl = "http://localhost:8081/usuario";
+        String registerUrl = "http://localhost:8082/usuario";
 
         Map<String, Object> userRegistration = new HashMap<>();
         userRegistration.put("username", username);
@@ -41,7 +41,7 @@ public class RegistroController {
         userRegistration.put("rut", rut);
         userRegistration.put("direccion", direccion);
         userRegistration.put("comuna", comuna);
-        userRegistration.put("rolId", 1);
+        userRegistration.put("rolId", 2);
 
         RestTemplate restTemplate = new RestTemplate();
         try {
@@ -51,11 +51,11 @@ public class RegistroController {
                 return "redirect:/login";
             } else {
                 model.addAttribute("error", "Error en el registro");
-                return "register";
+                return "registro";
             }
         } catch (HttpClientErrorException e) {
             model.addAttribute("error", "Error en el registro: " + e.getMessage());
-            return "register";
+            return "registro";
         }
     }
 }

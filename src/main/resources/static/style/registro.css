@@ -12,6 +12,17 @@ main {
   justify-content: center;
 }
 
+footer {
+  background: linear-gradient(45deg, #007bff, #00c6ff);
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
 /* Estilo del formulario */
 .container_form {
   padding: 30px;

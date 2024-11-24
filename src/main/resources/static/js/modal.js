@@ -25,3 +25,10 @@ function toggleInputFields() {
       document.getElementById('updateRol').value = rolId;
   });
   
+  
+  const deleteModal = document.getElementById('deleteModal');
+  deleteModal.addEventListener('show.bs.modal', function (event) {
+      const button = event.relatedTarget; // Botón que disparó el evento
+      const userId = button.getAttribute('data-id');
+      document.getElementById('deleteUserId').value = userId;
+  });
