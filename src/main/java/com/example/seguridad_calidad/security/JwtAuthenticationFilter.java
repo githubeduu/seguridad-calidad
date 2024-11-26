@@ -29,30 +29,36 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-
+    
         HttpSession session = request.getSession();
         String token = (String) session.getAttribute("token");
-
-        if (token != null) {
-            Claims claims = Jwts.parserBuilder()
-                    .setSigningKey(secretKey.getBytes(StandardCharsets.UTF_8))
-                    .build()
-                    .parseClaimsJws(token.replace("Bearer ", ""))
-                    .getBody();
-
-            String username = claims.getSubject();
-            List<String> roles = claims.get("authorities", List.class);
-
-            List<GrantedAuthority> authorities = roles.stream()
-                    .map(SimpleGrantedAuthority::new)
-                    .collect(Collectors.toList());
-
-            UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(username, null, authorities);
-            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+    
+        try {
+            if (token != null) {
+                Claims claims = Jwts.parserBuilder()
+                        .setSigningKey(secretKey.getBytes(StandardCharsets.UTF_8))
+                        .build()
+                        .parseClaimsJws(token.replace("Bearer ", ""))
+                        .getBody();
+    
+                String username = claims.getSubject();
+                List<String> roles = claims.get("authorities", List.class);
+    
+                List<GrantedAuthority> authorities = roles.stream()
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
+    
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(username, null, authorities);
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        } catch (Exception e) {
+            // Loguear la excepción si es necesario, pero continuar con la cadena del filtro
+            SecurityContextHolder.clearContext();
         }
-
+    
         filterChain.doFilter(request, response);
     }
+    
 }
