@@ -31,7 +31,7 @@ public class RegistroController {
             @RequestParam String direccion,
             @RequestParam String comuna,
             Model model) {
-        
+
         String registerUrl = "http://localhost:8082/usuario";
 
         Map<String, Object> userRegistration = new HashMap<>();
@@ -54,8 +54,17 @@ public class RegistroController {
                 return "registro";
             }
         } catch (HttpClientErrorException e) {
-            model.addAttribute("error", "Error en el registro: " + e.getMessage());
+            if (e.getStatusCode() == HttpStatus.CONFLICT) {
+                model.addAttribute("error", "El usuario ya existe");
+            } else {
+                model.addAttribute("error", "Error en el registro: " + e.getMessage());
+            }
+            return "registro";
+        } catch (Exception e) {
+            model.addAttribute("error", "Error inesperado: " + e.getMessage());
             return "registro";
         }
     }
+
+
 }
