@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 class JwtAuthenticationFilterTest {
@@ -60,5 +60,38 @@ class JwtAuthenticationFilterTest {
         assert SecurityContextHolder.getContext().getAuthentication() == null;
     }
 
-    
+    @Test
+    void doFilterInternal_ExceptionDuringValidation() throws Exception {
+        when(request.getSession()).thenReturn(session);
+
+        // Simular un token malformado que lanza una excepción
+        String malformedToken = "Bearer malformado.token";
+        when(session.getAttribute("token")).thenReturn(malformedToken);
+
+        jwtAuthenticationFilter.doFilterInternal(request, response, filterChain);
+
+        // Verificar que el contexto de seguridad se limpia
+        assertNull(SecurityContextHolder.getContext().getAuthentication());
+
+        // Verificar que el filtro continúa
+        verify(filterChain, times(1)).doFilter(request, response);
+    }
+
+    @Test
+    void doFilterInternal_TokenWithoutBearerPrefix() throws Exception {
+        when(request.getSession()).thenReturn(session);
+
+        // Proveer un token sin el prefijo "Bearer"
+        String tokenWithoutBearer = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZXMiOlsiUk9MRV9VU0VSIl19.valid-signature";
+        when(session.getAttribute("token")).thenReturn(tokenWithoutBearer);
+
+        jwtAuthenticationFilter.doFilterInternal(request, response, filterChain);
+
+        // Verificar que el contexto de seguridad no se configura
+        assertNull(SecurityContextHolder.getContext().getAuthentication());
+
+        // Verificar que el filtro continúa
+        verify(filterChain, times(1)).doFilter(request, response);
+    }
+
 }

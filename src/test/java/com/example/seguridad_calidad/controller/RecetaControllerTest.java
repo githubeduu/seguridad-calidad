@@ -97,6 +97,19 @@ class RecetaControllerTest {
 
     @Test
     @WithMockUser(username = "testuser", roles = {"USER"})
+    void testSubirMedia_ExitosoYouTube() throws Exception {
+        mockMvc.perform(multipart("/recetas/1/media")
+                .param("tipo", "youtube")
+                .param("youtubeUrl", "https://www.youtube.com/watch?v=testvideo"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/recetas/1"));
+
+        verify(recetaService, times(1)).subirMedia(eq(1), eq("youtube"), isNull(), eq("https://www.youtube.com/watch?v=testvideo"));
+    }
+
+
+    @Test
+    @WithMockUser(username = "testuser", roles = {"USER"})
     void testAgregarComentario_Exitoso() throws Exception {
         mockMvc.perform(post("/recetas/1/comentarios")
                         .param("usuario", "testuser")
